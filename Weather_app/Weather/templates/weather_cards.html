@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Weather Reports</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container card d-flex justify-content-center ">
+
+    <div class="weather">
+        <div class="row">
+
+            <div class="col-6 m-auto">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="text-left" for="location"> Enter the City Name </label>
+                        <input class="form-control" type="text" name="location" id="location" placeholder="City">
+
+                        <button class="form-control btn btn-primary mt-3" type="submit"> Search </button>
+                    </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class=" col-md-6 m-auto">
+                <div class="card m-auto"> 
+                    
+                    <div class="title">
+                        <p>{{city_weather.city}}</p>
+                    </div>
+                    <div class="temp mt-5">+20<sup>&deg;</sup>
+                        <span class="icon"><img class="img-fluid ml-3" src="http://openweathermap.org/img/w/{{ city_weather.Icon }}.png " /></span></div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="header"><b>Humidity</b></div>
+                            <div class="value">{{city_weather.Humidity}}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="header"><b>Wind Speed</b></div>
+                            <div class="value">{{ city_weather.Wind_Speed }}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="header"><b>Pressure</b></div>
+                            <div class="value">{{city_weather.Pressure}}</div>
+                        </div>
+                        <div class="col-12">
+                            <div class="header mt-3"><b>{{city_weather.Description}}</b></div>
+                            
+                        </div>
+                    </div>
+                </div></div>
+            
+        
+    </div>
+</div>
+</div>
+</body>
+</html>
